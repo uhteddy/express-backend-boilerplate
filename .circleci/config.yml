@@ -41,4 +41,10 @@ workflows:
   build:
     jobs:
       - lint
+<<<<<<< HEAD
       - test
+=======
+      - node-6.0
+      - node-12.4
+      - codecov
+>>>>>>> bffb0d3e3f0b177e5cd0d2678f49ec3e09bebf88
