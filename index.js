@@ -14,7 +14,7 @@ app.use(cookieParser());
 
 
 // Functions
-const checkMissingPromise = async(original, check) => {
+const checkMissingPromise = async (original, check) => {
     return new Promise((resolve, reject) => {
         let missingValues = [];
 

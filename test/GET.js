@@ -2,11 +2,6 @@ const axios = require('axios');
 const expect = require("chai").expect
 const route = "http://127.0.0.1:3030/test";
 
-axios.get(`${route}/headers`)
-    .then(response => {
-        console.log(response)
-    })
-
 describe("GET Requests", function() {
     it('Returns successful when sending a dataless request.', async function() {
         const response = await axios.get(route)

@@ -1,0 +1,14 @@
+root: true
+
+env:
+  node: true
+
+parserOptions:
+  ecmaVersion: 8
+
+rules:
+  eol-last: 1
+  eqeqeq: [error, allow-null]
+  indent: [2, 4]
+  no-trailing-spaces: 0
+  no-unused-vars: [error, { vars: all, args: none, ignoreRestSiblings: true }]
