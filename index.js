@@ -41,6 +41,17 @@ const findDirectory = (directory) => {
     }
 }
 
+// Enviornment setup.
+app.use(function (error, req, res, next) {
+
+    // Error Handling for Syntax Errors.
+    if (error instanceof SyntaxError) {
+        res.status(500).json({ success: false, response: "There was a syntax error while processing the request."})
+    } else {
+        next();
+    }
+});
+
 // Routing Handler
 app.all('*', (req, res) => {
     const directory = req.originalUrl.replace(/\?.*$/, '');
@@ -74,16 +85,14 @@ app.all('*', (req, res) => {
                     let types = ['body', 'headers', 'queries', 'cookies'];
 
                     for (type in types) {
-                        console.log(types[type])
                         if (promiseResponse[type].length > 0) {
                             missingValues[types[type]] = promiseResponse[type]
                         }
                     }
 
                     if (Object.keys(missingValues).length > 0) {
-                        let showMissingValues = settingsPath["SHOW_MISSING_VALUES"] || true
-                        if (showMissingValues) {
-                            console.log(missingValues)
+                        let showMissingValues = settingsPath["SHOW_MISSING_VALUES"]
+                        if (showMissingValues) { 
                             res.status(422).json({ success: false, message: configFile.ERROR_MESSAGES[422], missing: missingValues })
                         } else {
                             statusError(422);
