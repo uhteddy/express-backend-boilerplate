@@ -1,7 +1,42 @@
-version: 2.1
-orbs:
-  node: circleci/node@3.0.0
+version: 2
+jobs:
+  lint:
+    docker:
+      - image: circleci/node:12.4
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run: npm install eslint
+      - run: npm run lint
+  node-12.4:
+    docker:
+      - image: circleci/node:12.4
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run: npm install
+      - run:
+          command: node index.js
+          background: true
+      - run: npm run test
+
+  codecov:
+    docker:
+      - image: circleci/node:12.4
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run: npm install
+      - run:
+          command: node index.js
+          background: true
+      - run: npm run test-coverage
+      - run: npm run codecov
+
 workflows:
-  node-tests:
+  version: 2
+  build:
     jobs:
-      - node/test
+      - lint
+      - node-12.4
+      - codecov

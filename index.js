@@ -14,7 +14,7 @@ app.use(cookieParser());
 
 
 // Functions
-const checkMissingPromise = async(original, check) => {
+const checkMissingPromise = async (original, check) => {
     return new Promise((resolve, reject) => {
         let missingValues = [];
 
@@ -30,13 +30,15 @@ const checkMissingPromise = async(original, check) => {
 }
 
 const findDirectory = (directory) => {
-    const directoryPath = path.join(__dirname, './routes', directory)
-    if (fs.existsSync(directoryPath)) {
-        return require(directoryPath)
+    const directoryPath = path.join(__dirname, './routes', directory + '.js');
+    const indexPath = path.join(__dirname, './routes', directory, 'index.js');
+    if (fs.existsSync(indexPath)) {
+        return require(indexPath)
     } else {
-        const indexPath = path.join(__dirname, './routes', directory, 'index.js');
-        if (fs.existsSync(indexPath)) {
-            return indexPath
+        if (fs.existsSync(directoryPath)) {
+            if (directory !== "/" ) {
+                return require(directoryPath)
+            }
         }
     }
 }
@@ -68,8 +70,8 @@ app.all('*', (req, res) => {
         if (directoryPath[method]) { // Checks if the method used is a valid method.
             // The Method Exists, we now need to check the required values.
             const methodPath = directoryPath[method]
-            const requirementPath = methodPath["Requirements"];
-            const settingsPath = methodPath["Settings"];
+            const requirementPath = methodPath["Requirements"] || {};
+            const settingsPath = methodPath["Settings"] || {};
 
             const bodyCheck = checkMissingPromise(req.body, requirementPath["Body"]);
             const headersCheck = checkMissingPromise(req.headers, requirementPath["Headers"]);
@@ -100,10 +102,11 @@ app.all('*', (req, res) => {
                     } else {
                         try {
                             const response = methodPath["Run"](req, res);
+                            let checkedResponse = response[0] || response;
                             if (response[1] || response[1] == null) {
-                                res.status(200).json({ success: true, response: response[0] })
+                                res.status(200).json({ success: true, response: checkedResponse })
                             } else {
-                                res.status(200).json({ success: false, response: response[0] })
+                                res.status(200).json({ success: false, response: checkedResponse })
                             }
                         } catch(err) {
                             statusError(500)

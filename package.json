@@ -4,7 +4,11 @@
   "description": "A simplistic boilerplate to create routing with express.",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js"
+    "test": "mocha",
+    "lint": "eslint .",
+    "test-coverage": "nyc mocha test",
+    "codecov": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
+    "fix": "eslint . --fix"
   },
   "repository": {
     "type": "git",
@@ -23,10 +27,19 @@
   },
   "homepage": "https://github.com/uhteddy/express-backend-boilerplate#readme",
   "dependencies": {
+    "axios": "^0.21.1",
     "body-parser": "^1.19.0",
+    "codecov": "^3.8.1",
     "cookie-parser": "^1.4.5",
+    "eslint": "^7.17.0",
     "express": "^4.17.1",
     "file-system": "^2.2.2",
+    "forever": "^3.0.4",
+    "nyc": "^15.1.0",
     "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.2.1"
   }
 }
