@@ -15,6 +15,7 @@ jobs:
     steps:
       - checkout
       - run: npm install
+      - run: node index.js
       - run: npm run test
 
   node-12.4:
@@ -24,6 +25,7 @@ jobs:
     steps:
       - checkout
       - run: npm install
+      - run: node index.js
       - run: npm run test
 
   codecov:
@@ -33,6 +35,7 @@ jobs:
     steps:
       - checkout
       - run: npm install
+      - run: node index.js
       - run: npm run test-coverage
       - run: npm run codecov
 
@@ -41,4 +44,6 @@ workflows:
   build:
     jobs:
       - lint
-      - test
+      - node-6.0
+      - node-12.4
+      - codecov

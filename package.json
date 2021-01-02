@@ -4,7 +4,7 @@
   "description": "A simplistic boilerplate to create routing with express.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test",
+    "test": "mocha .",
     "lint": "eslint .",
     "test-coverage": "nyc mocha test",
     "codecov": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
