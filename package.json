@@ -1,0 +1,32 @@
+{
+  "name": "express-backend-boilerplate",
+  "version": "0.5.0",
+  "description": "A simplistic boilerplate to create routing with express.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uhteddy/express-backend-boilerplate.git"
+  },
+  "keywords": [
+    "express",
+    "boilerplate",
+    "routes",
+    "routing"
+  ],
+  "author": "uhTeddy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/uhteddy/express-backend-boilerplate/issues"
+  },
+  "homepage": "https://github.com/uhteddy/express-backend-boilerplate#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "file-system": "^2.2.2",
+    "path": "^0.12.7"
+  }
+}
