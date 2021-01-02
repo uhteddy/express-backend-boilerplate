@@ -17,4 +17,21 @@ describe("GET Requests", function() {
                 expect(response.data.success).to.equal(false)
             })
     })
+
+    it('Returns successful when sending a header in the request.', async function() {
+        const config = {
+            headers: {
+                test: "Hello."
+            }
+        }
+
+        axios.get(`${route}/headers`, config)
+            .then(response => {
+                const data = response.data;
+                expect(data.success).to.equal(true) && expect(data.response.hello).to.equal(config.headers.test)
+            })
+            .catch(response => {
+                throw new Error("There was an error while sending header request.")
+            })
+    })
 });

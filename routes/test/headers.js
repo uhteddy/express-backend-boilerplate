@@ -7,7 +7,7 @@ module.exports = {
             Body: []
         },
         Run: (req, res) => {
-            return { hello: true }
+            return { hello: req.headers.test }
         }
     }
 }
