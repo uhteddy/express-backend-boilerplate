@@ -70,8 +70,8 @@ app.all('*', (req, res) => {
         if (directoryPath[method]) { // Checks if the method used is a valid method.
             // The Method Exists, we now need to check the required values.
             const methodPath = directoryPath[method]
-            const requirementPath = methodPath["Requirements"];
-            const settingsPath = methodPath["Settings"];
+            const requirementPath = methodPath["Requirements"] || {};
+            const settingsPath = methodPath["Settings"] || {};
 
             const bodyCheck = checkMissingPromise(req.body, requirementPath["Body"]);
             const headersCheck = checkMissingPromise(req.headers, requirementPath["Headers"]);
