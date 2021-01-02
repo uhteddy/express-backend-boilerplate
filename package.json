@@ -4,7 +4,7 @@
   "description": "A simplistic boilerplate to create routing with express.",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -23,10 +23,15 @@
   },
   "homepage": "https://github.com/uhteddy/express-backend-boilerplate#readme",
   "dependencies": {
+    "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
     "file-system": "^2.2.2",
     "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.2.1"
   }
 }
