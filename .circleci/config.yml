@@ -15,8 +15,9 @@ jobs:
     steps:
       - checkout
       - run: npm install
-      - run: node index.js
+      - run: pm2 start index.js
       - run: npm run test
+      - run: pm2 stop 0
 
   codecov:
     docker:
@@ -25,9 +26,10 @@ jobs:
     steps:
       - checkout
       - run: npm install
-      - run: node index.js
+      - run: pm2 start index.js
       - run: npm run test-coverage
       - run: npm run codecov
+      - run: pm2 stop 0
 
 workflows:
   version: 2
