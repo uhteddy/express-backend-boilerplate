@@ -8,16 +8,6 @@ jobs:
       - checkout
       - run: npm install eslint
       - run: npm run lint
-  node-6.0:
-    docker:
-      - image: circleci/node:6
-    working_directory: ~/repo
-    steps:
-      - checkout
-      - run: npm install
-      - run: node index.js
-      - run: npm run test
-
   node-12.4:
     docker:
       - image: circleci/node:12.4
@@ -44,6 +34,5 @@ workflows:
   build:
     jobs:
       - lint
-      - node-6.0
       - node-12.4
       - codecov
