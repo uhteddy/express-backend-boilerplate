@@ -34,6 +34,7 @@
     "express": "^4.17.1",
     "file-system": "^2.2.2",
     "forever": "^3.0.4",
+    "nyc": "^15.1.0",
     "path": "^0.12.7"
   },
   "devDependencies": {
