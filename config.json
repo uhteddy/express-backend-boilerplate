@@ -1,0 +1,10 @@
+{
+    "PORT": 3030,
+
+    "ERROR_MESSAGES": {
+        "404": "This endpoint does not exist.",
+        "405": "This method is not allowed on this endpoint.",
+        "422": "Request is missing data.",
+        "500": "There was an error processing the request."
+    }
+}
